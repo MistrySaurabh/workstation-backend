@@ -1,16 +1,16 @@
 schema = new Schema({
-    name: {
+    body: {
         type: Schema.types.Mixed,
         required: true
     },
-    members: {
+    attachments: {
         type: [Schema.Types.ObjectId],
-        ref: 'Users',
+        ref: 'Files',
         default: [],
     },
-    identifier: {
-        type: String,
-        unique: true,
+    user_id: {
+        type: Schema.Types.ObjectId,
+        ref: 'Users',
         required: true
     },
     project_id: {
@@ -18,9 +18,10 @@ schema = new Schema({
         ref: 'Projects',
         required: true
     },
-    created_by: {
+    task_id: {
         type: Schema.Types.ObjectId,
-        ref: 'Users'
+        ref: 'Tasks',
+        required: true
     },
     created_at: {
         type: Date,
@@ -31,7 +32,7 @@ schema = new Schema({
         default: Date.now
     },
 }, {
-    collection: 'Teams'
+    collection: 'Comments'
 })
 
 module.exports = schema
