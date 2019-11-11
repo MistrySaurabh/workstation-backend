@@ -1,10 +1,10 @@
 schema = new Schema({
     name: {
-        type: Schema.types.Mixed,
+        type: String,
         required: true
     },
     members: {
-        type: [Schema.Types.ObjectId],
+        type: [Number],
         ref: 'Users',
         default: [],
     },
@@ -14,12 +14,12 @@ schema = new Schema({
         required: true
     },
     project_id: {
-        type: Schema.Types.ObjectId,
+        type: Number,
         ref: 'Projects',
         required: true
     },
     created_by: {
-        type: Schema.Types.ObjectId,
+        type: Number,
         ref: 'Users'
     },
     created_at: {
@@ -29,9 +29,10 @@ schema = new Schema({
     updated_at: {
         type: Date,
         default: Date.now
-    },
+    }
 }, {
     collection: 'Teams'
 })
 
+schema.plugin(autoIncrement.plugin,'Teams');
 module.exports = schema

@@ -1,9 +1,9 @@
 const router = express.Router();
 
-router.post('/login', validators.validate(validators.auth.login, 'body'), controllers.auth.login);
-router.post('/register', validators.validate(validators.auth.register, 'body'), controllers.auth.register);
-router.post('/forgot_password', validators.validate(validators.auth.forgotPassword, 'body'), controllers.auth.forgotPassword);
-router.post('/reset_password', validators.validate(validators.auth.resetPassword, 'body'), controllers.auth.resetPassword);
-//router.post('/logout', middlewares.Oauth2.authenticate, controllers.auth.logout);
+router.post('/login', validators.validate(validators.schema.login, 'body'), controllers.auth.login);
+router.post('/register', validators.validate(validators.schema.register, 'body'), controllers.auth.register);
+router.post('/forgot_password', validators.validate(validators.schema.forgotPassword, 'body'), controllers.auth.forgotPassword);
+router.post('/reset_password', validators.validate(validators.schema.resetPassword, 'body'), controllers.auth.resetPassword);
+router.post('/logout', OAuth2.authenticate, controllers.auth.logout);
 
 module.exports = router

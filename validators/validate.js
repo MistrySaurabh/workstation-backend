@@ -1,6 +1,6 @@
 module.exports=(schema,property) => { 
-    return (req,res,next) => { 
-      const { error } = Joi.validate(req[property], schema,{ abortEarly: false }); 
+     return (req,res,next) => { 
+      const { error } = Joi.validate(req[property],schema,{abortEarly:false}); 
       const valid = error == null; 
       if (valid) { next(); } 
       else { 
@@ -22,5 +22,5 @@ module.exports=(schema,property) => {
         }
         res.status(422).json({ errors: errors }) 
       } 
-    } 
+    }  
   } 

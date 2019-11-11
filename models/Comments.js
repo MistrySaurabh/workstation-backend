@@ -1,25 +1,25 @@
 schema = new Schema({
     body: {
-        type: Schema.types.Mixed,
+        type: Schema.Types.Mixed,
         required: true
     },
     attachments: {
-        type: [Schema.Types.ObjectId],
+        type: [Number],
         ref: 'Files',
         default: [],
     },
     user_id: {
-        type: Schema.Types.ObjectId,
+        type: Number,
         ref: 'Users',
         required: true
     },
     project_id: {
-        type: Schema.Types.ObjectId,
+        type: Number,
         ref: 'Projects',
         required: true
     },
     task_id: {
-        type: Schema.Types.ObjectId,
+        type: Number,
         ref: 'Tasks',
         required: true
     },
@@ -34,5 +34,5 @@ schema = new Schema({
 }, {
     collection: 'Comments'
 })
-
+schema.plugin(autoIncrement.plugin,'Comments');
 module.exports = schema

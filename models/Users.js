@@ -45,7 +45,7 @@ var schema = new Schema({
         default: null
     },
     reset_token_expires: {
-        type: String,
+        type: Number,
         default: null
     },
     created_at: {
@@ -59,5 +59,5 @@ var schema = new Schema({
 }, {
     collection: 'Users'
 });
-
+schema.plugin(autoIncrement.plugin,'Users');
 module.exports = schema;
