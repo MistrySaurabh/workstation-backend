@@ -1,0 +1,4 @@
+{"statusCode":401,"status":401,"code":401,"message":"Unauthorized request: no authentication given","name":"unauthorized_request","level":"error"}
+{"status":404,"level":"error"}
+{"status":404,"level":"error"}
+{"statusCode":401,"status":401,"code":401,"message":"Unauthorized request: no authentication given","name":"unauthorized_request","level":"error"}

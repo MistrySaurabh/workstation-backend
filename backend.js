@@ -113,11 +113,10 @@ app.get('/seed', (req, res) => {
     });
 });
 
-app.get('/secure', OAuth2.authenticate, (req, res) => {
-    res.json({ message: 'Secure data' });
-});
 
 app.use('/api/auth', routes.api.auth);
+app.use('/api/comments', OAuth2.authenticate,routes.api.comment);
+app.use('/api/notifications', OAuth2.authenticate,routes.api.notifications);
 
 app.use(middlewares.notFound404);
 app.use(middlewares.globalErrorHandler);
