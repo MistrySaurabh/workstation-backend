@@ -23,7 +23,12 @@ module.exports = (req, res) => {
                     newUser.password = hash;
                     newUser
                         .save()
-                        .then(user => res.json(user))
+                        .then(user => {
+                            return res.status(200).json({
+                                status: "success",
+                                message: 'Email has been sent to your registered email address , please verify your account first.'
+                            })
+                        })
                         .catch(err => console.log(err));
                 });
             }

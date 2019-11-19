@@ -3,13 +3,13 @@ module.exports = (req, res) => {
         Users.findOne({ email: req.body.username }).lean().exec((err, user) => {
             if (err) {
                 return res.status(500).json({
-                    errors: {"email": "Failed to login" }
+                    errors: { "email": "Failed to login" }
                 });
             }
 
             if (!err && !user) {
                 return res.status(404).json({
-                    errors: { "email": "No such account exists"}
+                    errors: { "email": "No such account exists" }
                 });
             }
 
@@ -30,13 +30,14 @@ module.exports = (req, res) => {
                                 delete token.user.password;
                                 return res.status(200).json({
                                     status: "success",
+                                    message: "Login Successfull",
                                     token: token
                                 });
                             }
                         });
                     } else {
                         return res.status(400).json({
-                            errors:{
+                            errors: {
                                 "password": "Incorrect credentials"
                             }
                         });

@@ -11,7 +11,7 @@ global.mongoose = require('mongoose')
 global.Schema = mongoose.Schema;
 global.nodemailer = require('nodemailer');
 global.Joi = require('@hapi/joi')
-global.autoIncrement=require('mongoose-auto-increment');
+global.autoIncrement = require('mongoose-auto-increment');
 global.bcrypt = require('bcrypt-nodejs');
 global.crypto = require('crypto');
 global.gravatar = require('gravatar');
@@ -49,7 +49,7 @@ errorLogger.add(new winston.transports.DailyRotateFile({
 
 global.rootdir = __dirname
 
-var mongooseOptions = { useNewUrlParser: true ,useUnifiedTopology: true}
+var mongooseOptions = { useNewUrlParser: true, useUnifiedTopology: true }
 mongoose.set('useCreateIndex', true);
 autoIncrement.initialize(mongoose);
 mongoose.connect('mongodb://localhost:27017/workstation_backend', mongooseOptions, function(err) {
@@ -69,7 +69,7 @@ app.use(bodyParser.json({ parameterLimit: 100000, limit: '50mb' }));
 app.use(bodyParser.urlencoded({ extended: true, parameterLimit: 100000, limit: '50mb' }));
 
 // 'validators'
-let folders = ['models', 'helpers','mailer','validators','OAuth2','middlewares', 'controllers', 'routes']
+let folders = ['models', 'helpers', 'mailer', 'validators', 'OAuth2', 'middlewares', 'controllers', 'routes']
 for (let i of folders) {
     global[i] = requireTree(rootdir + '/' + i);
 }
@@ -82,7 +82,7 @@ global.oauth = new OAuth2Server({
     debug: true,
     accessTokenLifetime: 60 * 60,
     allowBearerTokensInQueryString: true,
-    model:  OAuth2.OAuthModel,
+    model: OAuth2.OAuthModel,
     grants: ['authorization_code', 'password', 'refresh_token', 'client_credentials']
 });
 
@@ -115,9 +115,9 @@ app.get('/seed', (req, res) => {
 
 
 app.use('/api/auth', routes.api.auth);
-app.use('/api/comments', OAuth2.authenticate,routes.api.comment);
-app.use('/api/notifications', OAuth2.authenticate,routes.api.notifications);
+app.use('/api/comments', OAuth2.authenticate, routes.api.comment);
+app.use('/api/notifications', OAuth2.authenticate, routes.api.notifications);
 
 app.use(middlewares.notFound404);
 app.use(middlewares.globalErrorHandler);
-app.listen(3000);
+app.listen(4000);

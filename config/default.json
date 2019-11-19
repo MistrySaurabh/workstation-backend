@@ -1,4 +1,12 @@
 {
     "title": "Workstation Backend",
-    "version": "1.0.0"
+    "version": "1.0.0",
+    "database": {
+        "db_name": "workstation_backend",
+        "connection": "mongodb",
+        "host": "localhost",
+        "port": 27017,
+        "username": "",
+        "password": ""
+    }
 }
