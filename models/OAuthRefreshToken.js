@@ -5,7 +5,7 @@ var schema = new Schema({
     User: { type: Number, ref: 'Users' },
     OAuthClient: { type: Number, ref: 'OAuthClient' },
 }, {
-    collection: 'RefreshToken'
+    collection: 'OAuthRefreshToken'
 });
-schema.plugin(autoIncrement.plugin,'RefreshToken');
+schema.plugin(autoIncrement.plugin, 'OAuthRefreshToken');
 module.exports = schema

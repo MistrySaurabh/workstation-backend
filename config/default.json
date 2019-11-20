@@ -8,5 +8,6 @@
         "port": 27017,
         "username": "",
         "password": ""
-    }
+    },
+    "access_token_lifetime": 3600
 }

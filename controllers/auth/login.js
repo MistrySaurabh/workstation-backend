@@ -15,6 +15,15 @@ module.exports = (req, res) => {
 
             if (!err && user) {
                 console.log('user', user)
+                if (!user.email_verified) {
+                    return res.status(400).json({
+                        errors: {
+                            "email": "Your Account is not verified yet , please verify your email address first"
+                        }
+                    });
+                }
+
+
                 helpers.hash.compareHash(req.body.password, user.password, (err, isMatched) => {
                     if (isMatched) {
                         OAuth2.token(req, res, (error, token) => {
@@ -28,7 +37,19 @@ module.exports = (req, res) => {
                             if (!error && token) {
                                 delete token.client;
                                 delete token.user.password;
-                                return res.status(200).json({
+                                let cookieOptions = {
+                                    expires: token.accessTokenExpiresAt,
+                                    sameSite: false,
+                                    secure: false,
+                                    path: "/",
+                                    httpOnly: true
+                                }
+
+                                res.cookie('access_token', token.access_token, cookieOptions);
+                                res.cookie('refresh_token', token.refresh_token, cookieOptions);
+                                res.cookie('auth_user', JSON.stringify(token.user), cookieOptions);
+
+                                return res.status(200).send({
                                     status: "success",
                                     message: "Login Successfull",
                                     token: token

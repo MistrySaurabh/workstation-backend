@@ -51,6 +51,8 @@ global.rootdir = __dirname
 
 var mongooseOptions = { useNewUrlParser: true, useUnifiedTopology: true }
 mongoose.set('useCreateIndex', true);
+mongoose.set('useFindAndModify', false);
+
 autoIncrement.initialize(mongoose);
 mongoose.connect('mongodb://localhost:27017/workstation_backend', mongooseOptions, function(err) {
     if (err) {
