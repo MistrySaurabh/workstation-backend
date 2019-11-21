@@ -1,7 +1,7 @@
 schema = new Schema({
     body: {
         type: Schema.Types.Mixed,
-        required: true
+        default: ''
     },
     attachments: {
         type: [Number],
@@ -34,5 +34,6 @@ schema = new Schema({
 }, {
     collection: 'Comments'
 })
-schema.plugin(autoIncrement.plugin,'Comments');
+schema.plugin(autoIncrement.plugin, 'Comments');
+schema.plugin(mongoosePaginate)
 module.exports = schema

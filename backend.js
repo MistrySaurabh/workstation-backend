@@ -8,6 +8,7 @@ global.OAuth2Server = require('oauth2-server');
 global.requireTree = require('require-tree')
 global.cors = require('cors')
 global.mongoose = require('mongoose')
+global.mongoosePaginate = require('mongoose-paginate-v2')
 global.Schema = mongoose.Schema;
 global.nodemailer = require('nodemailer');
 global.Joi = require('@hapi/joi')
@@ -82,10 +83,11 @@ global.Request = OAuth2Server.Request;
 global.Response = OAuth2Server.Response;
 global.oauth = new OAuth2Server({
     debug: true,
-    accessTokenLifetime: 60 * 60,
+    accessTokenLifetime: 60 * 60 * 60,
     allowBearerTokensInQueryString: true,
     model: OAuth2.OAuthModel,
-    grants: ['authorization_code', 'password', 'refresh_token', 'client_credentials']
+    grants: ['password', 'refresh_token']
+        //['authorization_code', 'password', 'refresh_token', 'client_credentials']
 });
 
 
@@ -117,6 +119,7 @@ app.get('/seed', (req, res) => {
 
 
 app.use('/api/auth', routes.api.auth);
+app.use('/api/project', OAuth2.authenticate, routes.api.project);
 app.use('/api/comments', OAuth2.authenticate, routes.api.comment);
 app.use('/api/notifications', OAuth2.authenticate, routes.api.notifications);
 
