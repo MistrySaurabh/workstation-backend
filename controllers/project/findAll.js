@@ -1,5 +1,17 @@
 module.exports = (req, res) => {
-    Projects.find({})
+    let limit = req.query.limit ? parseInt(req.query.limit) : 10;
+    let page = req.query.page ? parseInt(req.query.page) : 1;
+    let sort = {
+        created_at: 'desc'
+    };
+    let query = {};
+    let options = {
+        page,
+        limit,
+        sort
+    }
+
+    Projects.paginate(query, options)
         .then(projects => {
             return res.status(200).json({ status: 'success', projects: projects });
         }).catch(err => {

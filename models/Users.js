@@ -12,6 +12,10 @@ var schema = new Schema({
         type: String,
         default: null
     },
+    bio: {
+        type: String,
+        default: null,
+    },
     password: {
         type: String,
         required: true,
@@ -55,9 +59,15 @@ var schema = new Schema({
     update_at: {
         type: Date,
         default: Date.now
+    },
+    has_access_projects: {
+        type: [Number],
+        ref: 'Projects',
+        default: []
     }
 }, {
     collection: 'Users'
 });
-schema.plugin(autoIncrement.plugin,'Users');
+schema.plugin(autoIncrement.plugin, 'Users');
+schema.plugin(mongoosePaginate)
 module.exports = schema;

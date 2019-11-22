@@ -14,6 +14,7 @@ global.nodemailer = require('nodemailer');
 global.Joi = require('@hapi/joi')
 global.autoIncrement = require('mongoose-auto-increment');
 global.bcrypt = require('bcrypt-nodejs');
+global.multer = require('multer');
 global.crypto = require('crypto');
 global.gravatar = require('gravatar');
 global.moment = require('moment');
@@ -72,7 +73,7 @@ app.use(bodyParser.json({ parameterLimit: 100000, limit: '50mb' }));
 app.use(bodyParser.urlencoded({ extended: true, parameterLimit: 100000, limit: '50mb' }));
 
 // 'validators'
-let folders = ['models', 'helpers', 'mailer', 'validators', 'OAuth2', 'middlewares', 'controllers', 'routes']
+let folders = ['constants', 'models', 'helpers', 'mailer', 'validators', 'OAuth2', 'middlewares', 'controllers', 'routes']
 for (let i of folders) {
     global[i] = requireTree(rootdir + '/' + i);
 }
