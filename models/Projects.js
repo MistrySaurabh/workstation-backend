@@ -12,6 +12,14 @@ var swimlaneSchema = new Schema({
     is_active: { type: Boolean, default: true }
 })
 
+var invitesSchema = new Schema({
+    email:{type:String},
+    token:{type:String},
+    created_at:{
+        type: Date,
+        default: Date.now
+    }
+})
 
 var schema = new Schema({
     name: { type: String, required: true },
@@ -71,6 +79,10 @@ var schema = new Schema({
         user_id: { type: Number, ref: 'Users' },
         role: { type: String, default: 'project-member' }
     }],
+    invites:{
+        type:[invitesSchema],
+        default:[]
+    },
     created_at: {
         type: Date,
         default: Date.now

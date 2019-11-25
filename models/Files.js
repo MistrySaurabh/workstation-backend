@@ -1,5 +1,6 @@
 var schema=new Schema({
     project_id:{type:Number,ref:'Projects'},
+    task_id:{type:Number,ref:'Tasks'},
     user_id:{type:Number,ref:'Users'},
     original_name:{type:String},
     formatted_name:{type:String},
