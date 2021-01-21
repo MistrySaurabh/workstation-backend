@@ -34,7 +34,7 @@
         "oauth2-server": "^3.0.1",
         "require-tree": "^1.1.1",
         "slug": "^1.1.0",
-        "socket.io": "^2.3.0",
+        "socket.io": "^2.4.0",
         "winston": "^3.2.1",
         "winston-daily-rotate-file": "^4.2.1"
     }
